@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #ffffff;
+  color: #12181a;
+}
+
+::selection {
+  background-color: #cfe6de;
+  color: #0c2b22;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid #1f6350;
+  outline-offset: 2px;
+}
+
+/* --- Signature: calibration reticle, echoes a diagnostic imaging crosshair --- */
+.reticle {
+  position: relative;
+}
+.reticle::before,
+.reticle::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+.reticle-corners {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.reticle-corners span {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-color: #1f6350;
+}
+.reticle-corners span:nth-child(1) {
+  top: -1px;
+  left: -1px;
+  border-top: 1.5px solid;
+  border-left: 1.5px solid;
+}
+.reticle-corners span:nth-child(2) {
+  top: -1px;
+  right: -1px;
+  border-top: 1.5px solid;
+  border-right: 1.5px solid;
+}
+.reticle-corners span:nth-child(3) {
+  bottom: -1px;
+  left: -1px;
+  border-bottom: 1.5px solid;
+  border-left: 1.5px solid;
+}
+.reticle-corners span:nth-child(4) {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1.5px solid;
+  border-right: 1.5px solid;
+}
+
+.scan-sweep {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #2e7d66, transparent);
+  animation: sweep 2.8s ease-in-out infinite;
+  opacity: 0.85;
+}
+
+@keyframes sweep {
+  0% {
+    top: 4%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.85;
+  }
+  50% {
+    top: 92%;
+    opacity: 0.85;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    top: 92%;
+    opacity: 0;
+  }
+}
+
+.tick-row {
+  background-image: repeating-linear-gradient(
+    90deg,
+    #e4e7e7,
+    #e4e7e7 1px,
+    transparent 1px,
+    transparent 12px
+  );
+}

@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: pantheon-precision-health
+    runtime: docker
+    plan: starter
+    autoDeploy: true
+    envVars:
+      - key: ROBOFLOW_API_KEY
+        sync: false
+      - key: ROBOFLOW_WORKFLOW_URL
+        value: https://serverless.roboflow.com/faraimupfuti/workflows/precisionhealth-skin-condition-classification-v10-logic
+      - key: NODE_ENV
+        value: production
