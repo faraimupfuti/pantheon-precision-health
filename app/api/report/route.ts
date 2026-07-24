@@ -30,18 +30,24 @@ export async function POST(req: NextRequest) {
       timeStyle: "short"
     });
 
+    const element = React.createElement(ReportDocument, {
+      data: {
+        disease,
+        confidence: body.confidence ?? 0,
+        otherPredictions: body.otherPredictions ?? [],
+        imageDataUrl: body.imageDataUrl,
+        generatedAt,
+        reportId,
+        patientNote: body.patientNote
+      }
+    });
+
+    // ReportDocument is a wrapper around react-pdf's <Document>, but its own
+    // props ({ data }) don't structurally match react-pdf's DocumentProps —
+    // renderToBuffer only cares that the rendered tree is a <Document> at
+    // runtime, so the cast here is safe.
     const buffer = await renderToBuffer(
-      React.createElement(ReportDocument, {
-        data: {
-          disease,
-          confidence: body.confidence ?? 0,
-          otherPredictions: body.otherPredictions ?? [],
-          imageDataUrl: body.imageDataUrl,
-          generatedAt,
-          reportId,
-          patientNote: body.patientNote
-        }
-      })
+      element as unknown as Parameters<typeof renderToBuffer>[0]
     );
 
     return new NextResponse(buffer, {
