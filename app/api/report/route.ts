@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { renderToBuffer } from "@react-pdf/renderer";
 import React from "react";
+import path from "path";
 import { ReportDocument } from "@/lib/pdf/ReportDocument";
 import { findDisease } from "@/lib/diseases";
 
@@ -38,7 +39,8 @@ export async function POST(req: NextRequest) {
         imageDataUrl: body.imageDataUrl,
         generatedAt,
         reportId,
-        patientNote: body.patientNote
+        patientNote: body.patientNote,
+        logoPath: path.join(process.cwd(), "public", "logo.png")
       }
     });
 

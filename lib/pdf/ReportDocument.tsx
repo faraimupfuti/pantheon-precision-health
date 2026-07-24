@@ -28,6 +28,10 @@ const styles = StyleSheet.create({
     paddingBottom: 12,
     marginBottom: 18
   },
+  brandLogo: {
+    width: 150,
+    objectFit: "contain"
+  },
   brand: {
     fontSize: 15,
     fontWeight: 700,
@@ -172,6 +176,7 @@ export interface ReportData {
   generatedAt: string;
   reportId: string;
   patientNote?: string;
+  logoPath: string;
 }
 
 export function ReportDocument({ data }: { data: ReportData }) {
@@ -182,10 +187,7 @@ export function ReportDocument({ data }: { data: ReportData }) {
     <Document title={`Pantheon Precision Health — ${disease.name} Report`}>
       <Page size="A4" style={styles.page}>
         <View style={styles.headerRow}>
-          <View>
-            <Text style={styles.brand}>PANTHEON PRECISION HEALTH</Text>
-            <Text style={styles.brandSub}>AI-ASSISTED SKIN SCREENING REPORT</Text>
-          </View>
+          <Image src={data.logoPath} style={styles.brandLogo} />
           <View style={styles.metaBlock}>
             <Text style={styles.metaLine}>Report ID: {reportId}</Text>
             <Text style={styles.metaLine}>Generated: {generatedAt}</Text>

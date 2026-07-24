@@ -24,7 +24,11 @@ const mono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: "Pantheon Precision Health — Skin Analysis",
   description:
-    "AI-assisted skin condition screening with clinical reference reports. Pantheon Precision Health."
+    "AI-assisted skin condition screening with clinical reference reports. Pantheon Precision Health.",
+  icons: {
+    icon: "/favicon-32.png",
+    apple: "/apple-icon.png"
+  }
 };
 
 export default function RootLayout({
